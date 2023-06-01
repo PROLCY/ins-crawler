@@ -1,0 +1,6 @@
+image
+.env
+prev.csv
+data.csv
+session.json
+.DS_Store
