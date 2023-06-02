@@ -9,7 +9,9 @@ import random
 
 load_dotenv()
 
-for i in range(4):
+full_iteration = 50
+
+for i in range(full_iteration):
     try:
         ## 시간 측정 시작
         run_time_start = time.time()
@@ -29,11 +31,11 @@ for i in range(4):
 
 
 
-        hashtag = "usatravel" ## 검색할 해쉬태그
+        hashtag = "solotravel" ## 검색할 해쉬태그
         amount = 60 ## 가져올 사진의 개수(입력한 숫자의 반틈 정도 가져옴)
-        iteration_cnt = 2 ## 사진 가져오기 반복 횟수
+        iteration_cnt = 5## 사진 가져오기 반복 횟수
         time_delay_from = 30 ## 가져올 때마다 시간 딜레이 범위 시작값
-        time_delay_to = 120 ## 가져올 때마다 시간 딜레이 범위 마지막값
+        time_delay_to = 180 ## 가져올 때마다 시간 딜레이 범위 마지막값
 
 
 
@@ -85,9 +87,9 @@ for i in range(4):
             return recent_pk_list, cnt
 
         ## 크롤링 본체
-        for i in range(iteration_cnt):
+        for j in range(iteration_cnt):
             
-            print(str(i+1) + ". " + last_cursor)
+            print(str(j+1) + ". " + last_cursor)
             print("start download\n")
             
             ## 사진 가져와서 다운로드
@@ -104,12 +106,12 @@ for i in range(4):
             sum += cnt
             print(str(sum) + " photos were taken until now\n")
 
-            if(i != iteration_cnt - 1):
+            if(j != iteration_cnt - 1):
                 time_delay = random.randrange(time_delay_from, time_delay_to)
                 print("waiting " + str(time_delay) + " seconds...")
                 time.sleep(time_delay)
 
-        print("Crawling Is Finished")
+        print(str(i+1) + "/" + str(full_iteration) + " Crawling Is Finished")
 
 
 
@@ -119,11 +121,12 @@ for i in range(4):
         run_time = datetime.timedelta(seconds=sec)
         print("Runtime(h:mm:ss): " + str(run_time))
 
-        time_delay = random.randrange(180, 300)
+        cl.logout()
+        time_delay = random.randrange(300, 600)
         print("wait for " + str(time_delay) + " seconds...")
         time.sleep(time_delay)
     except:
-        time_delay = random.randrange(180, 300)
-        print("wait for " + str(time_delay) + " seconds...")
+        time_delay = random.randrange(600, 900)
+        print(str(i) + "(Exception) wait for " + str(time_delay) + " seconds...")
         time.sleep(time_delay)
         continue

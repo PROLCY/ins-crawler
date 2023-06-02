@@ -27,9 +27,9 @@ cl.request_timeout = 20
 
 
 
-hashtag = "usatravel" ## 검색할 해쉬태그
+hashtag = "solotravel" ## 검색할 해쉬태그
 amount = 60 ## 가져올 사진의 개수(입력한 숫자의 반틈 정도 가져옴)
-iteration_cnt = 5 ## 사진 가져오기 반복 횟수
+iteration_cnt = 1 ## 사진 가져오기 반복 횟수
 time_delay_from = 30 ## 가져올 때마다 시간 딜레이 범위 시작값
 time_delay_to = 120 ## 가져올 때마다 시간 딜레이 범위 마지막값
 
@@ -39,10 +39,13 @@ last_cursor = ""
 pk_list = []
 
 ## 이전 크롤링의 pk_list와 cursor 값 가져오기
+"""
 with open('prev.csv', 'r') as prev:
     text = prev.readline().split('.')
     pk_list = eval(text[0])
     last_cursor = text[1]
+"""
+
 
 sum = 0 ## 사진 개수 합
 
