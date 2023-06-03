@@ -4,3 +4,4 @@ prev.csv
 data.csv
 session.json
 .DS_Store
+exception_log.txt

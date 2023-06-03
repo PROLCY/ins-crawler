@@ -125,8 +125,14 @@ for i in range(full_iteration):
         time_delay = random.randrange(300, 600)
         print("wait for " + str(time_delay) + " seconds...")
         time.sleep(time_delay)
-    except:
+    except Exception as e:
         time_delay = random.randrange(600, 900)
-        print(str(i) + "(Exception) wait for " + str(time_delay) + " seconds...")
+        log = str(i+1) + " iteration, (Exception) wait for " + str(time_delay) + " seconds..."
+        print(log)
+
+        ## Exception 발생 시간 및 이유 기록
+        with open('exception_log.txt', 'a') as el:
+            el.write("[" + time.strftime('%Y-%m-%d %H:%M:%S') + "] " + log + " Error: " + str(e) + '\n')
+
         time.sleep(time_delay)
         continue
