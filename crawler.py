@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-ACCOUNT_USERNAME = 'username'
-ACCOUNT_PASSWORD = 'password'
+ACCOUNT_USERNAME = os.environ.get('ACCOUNT_USERNAME')
+ACCOUNT_PASSWORD = os.environ.get('ACCOUNT_PASSWORD')  
 
 configuration = {
     'USERNAME': ACCOUNT_USERNAME,
