@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-ACCOUNT_USERNAME = os.environ.get('ACCOUNT_USERNAME')
-ACCOUNT_PASSWORD = os.environ.get('ACCOUNT_PASSWORD')  
+ACCOUNT_USERNAME = 'username'
+ACCOUNT_PASSWORD = 'password'
 
 configuration = {
     'USERNAME': ACCOUNT_USERNAME,
@@ -21,6 +21,9 @@ configuration = {
 
 ## 크롤링 횟수
 max_crawl = 50 
+
+if not os.path.isdir('image'):
+    os.makedirs('image')
 
 for crawl_cnt in range(max_crawl):
     try:

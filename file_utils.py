@@ -2,13 +2,21 @@ import csv
 from pathlib import Path
 import time
 import random
+import os
 
 IMAGE_DIR_PATH = "./image"
+
+def make_file(filename):
+    file = open(filename, 'w')
+    file.close()
 
 ## data.csv에서 image_pk 가져오는 함수
 def read_image_pk_from_data_csv():
 
     image_pk = 1
+
+    if not os.path.isfile('data.csv'):
+        make_file('data.csv')
 
     with open('data.csv', "r") as csv_file:
         data_lines = csv_file.readlines()
@@ -71,8 +79,13 @@ def download_photos(photos, hashtag, prev_pk_list, client):
 
 ## prev.csv에서 pk_list와 last_cursor 읽는 함수
 def read_pk_list_and_last_cursor():
+    if not os.path.isfile('prev.csv'):
+        make_file('prev.csv')
+
     with open('prev.csv', 'r') as prev:
         splited_row = prev.readline().split('.')
+        if(splited_row == ['']):
+            return '', ''
         pk_list = eval(splited_row[0])
         last_cursor = splited_row[1]
     return pk_list, last_cursor
